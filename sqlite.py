@@ -46,11 +46,12 @@ q1B_result = cursor_local.fetchall()
 print(q1B_result)
 
 
-# # Insert into the q2B fragment
-# cursor_sqlite.execute("DELETE FROM q1B")
-# insert_query = "INSERT INTO q1B (Emp_ID, Full_Name, Age, Dept_ID) VALUES (?,?,?,?)"
-# cursor_sqlite.executemany(insert_query, q1B_result)
-# connection_obj.commit()
+# Insert into the q2B fragment
+cursor_sqlite.execute("DELETE FROM q1B")
+query_q1B_values = [('E1', 'Ryan Mburu', 23, 'D1'), ('E3', 'Agnes Nzembi', 29, 'D1'), ('E6', 'Sospeter Otieno', 24, 'D1')]
+insert_query = "INSERT INTO q1B (Emp_ID, Full_Name, Age, Dept_ID) VALUES (?, ?, ?, ?)"
+cursor_sqlite.executemany(insert_query, query_q1B_values)
+connection_obj.commit()
 
 # Print the q2B fragment
 cursor_sqlite.execute("SELECT * FROM q1B")
